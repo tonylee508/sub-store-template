@@ -158,7 +158,6 @@
       },
       {
         "rule_set": [
-          "spotify_ip",
           "spotify_domain"
         ],
         "action": "route",
@@ -202,13 +201,6 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "spotify_ip",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/spotify.srs",
         "download_detour": "direct"
       },
       {
