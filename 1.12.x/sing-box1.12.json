@@ -555,7 +555,7 @@
       "tag": "hk-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.youtube.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -563,7 +563,7 @@
       "tag": "tw-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.youtube.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -571,7 +571,7 @@
       "tag": "jp-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.youtube.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -579,7 +579,7 @@
       "tag": "sg-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.youtube.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -587,7 +587,7 @@
       "tag": "us-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.youtube.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -595,7 +595,7 @@
       "tag": "all-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://youtube.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
