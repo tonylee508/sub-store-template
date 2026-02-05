@@ -6,8 +6,7 @@
   "dns": {
     "servers": [
       { "tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" },
-      { "tag": "google", "type": "https", "server": "8.8.8.8", "detour": "PROXY" },
-      { "tag": "cfDNS", "type": "h3", "server": "1.1.1.1", "detour": "OpenAI" },
+      { "tag": "google", "type": "https", "server": "8.8.8.8", "detour": "proxy" },
       { "tag": "ali", "type": "https", "server": "223.5.5.5" },
       { "tag": "local", "type": "local" }
     ],
@@ -15,73 +14,87 @@
       { "rule_set": "private_domain", "server": "local" },
       { "clash_mode": "Direct", "action": "route", "server": "ali" },
       { "clash_mode": "Global", "action": "route", "server": "fakeip" },
-      { "query_type": [ "HTTPS" ], "action": "reject" },
+      { "query_type": "HTTPS", "action": "reject" },
       { "query_type": [ "A", "AAAA" ], "action": "route", "server": "fakeip", "rewrite_ttl": 1 },
-      { "rule_set": [ "apple_domain", "cn_domain", "bilibili_domain" ], "server": "ali" },
-      { "rule_set": [ "google_domain", "youtube_domain", "proxy_domain" ], "server": "google" },
-      { "rule_set": [ "openai_domain", "claude_domain", "telegram_domain" ], "server": "cfDNS" }
+      { "rule_set": "cn_domain", "action": "route", "server": "ali" }
     ],
     "final": "google",
     "independent_cache": true
   },
   "inbounds": [
-    { "type": "mixed", "tag": "mixed-in", "listen": "0.0.0.0", "listen_port": 7890, "tcp_fast_open": true },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7890,
+      "tcp_fast_open": true
+    },
     {
       "type": "tun",
       "tag": "tun-in",
       "address": [ "172.19.0.0/30", "fdfe:dcba:9876::/126" ],
       "auto_route": true,
       "stack": "system",
-      "platform": { "http_proxy": { "enabled": true, "server": "0.0.0.0", "server_port": 7890 } }
+      "platform": {
+        "http_proxy": { "enabled": true, "server": "0.0.0.0", "server_port": 7890 }
+      }
     }
   ],
   "outbounds": [
-    { "type": "selector", "tag": "GLOBAL", "outbounds": [ "DIRECT", "PROXY", "Youtube", "AUTO" ], "default": "PROXY" },
-    { "type": "selector", "tag": "PROXY", "outbounds": [ "AUTO", "HK AUTO", "JP AUTO", "US AUTO", "SG AUTO", "TikTok", "AI", "DIRECT" ], "default": "AUTO" },
-    { "type": "selector", "tag": "AI", "outbounds": [ "OpenAI", "Gemini", "Claude" ], "default": "OpenAI" },
-    { "type": "selector", "tag": "Youtube", "outbounds": [ "PROXY", "HK AUTO", "JP AUTO", "US AUTO" ], "default": "PROXY" },
-    { "type": "selector", "tag": "TikTok", "outbounds": [ "SG AUTO", "JP AUTO", "US AUTO" ], "default": "SG AUTO" },
-    { "type": "urltest", "tag": "AUTO", "outbounds": [ "hk", "jp", "us", "sg" ], "url": "https://cp.cloudflare.com/generate_204", "interval": "10m" },
-    { "type": "urltest", "tag": "HK AUTO", "outbounds": [ "hk" ], "url": "https://cp.cloudflare.com/generate_204" },
-    { "type": "urltest", "tag": "JP AUTO", "outbounds": [ "jp" ], "url": "https://cp.cloudflare.com/generate_204" },
-    { "type": "urltest", "tag": "US AUTO", "outbounds": [ "us" ], "url": "https://cp.cloudflare.com/generate_204" },
-    { "type": "urltest", "tag": "SG AUTO", "outbounds": [ "sg" ], "url": "https://cp.cloudflare.com/generate_204" },
-    { "type": "direct", "tag": "DIRECT" },
-    { "tag": "hk", "type": "selector", "outbounds": [] }, 
-    { "tag": "jp", "type": "selector", "outbounds": [] },
-    { "tag": "us", "type": "selector", "outbounds": [] },
-    { "tag": "sg", "type": "selector", "outbounds": [] },
-    { "tag": "OpenAI", "type": "selector", "outbounds": [ "us", "sg" ] },
-    { "tag": "Gemini", "type": "selector", "outbounds": [ "us", "tw", "jp" ] },
-    { "tag": "Claude", "type": "selector", "outbounds": [ "us", "sg" ] }
+    { "type": "selector", "tag": "proxy", "outbounds": [ "hk-auto", "tw-auto", "jp-auto", "sg-auto", "us-auto", "direct" ], "default": "hk-auto" },
+    { "type": "selector", "tag": "google", "outbounds": [ "proxy", "direct" ], "default": "proxy" },
+    { "type": "selector", "tag": "telegram", "outbounds": [ "proxy", "direct" ], "default": "proxy" },
+    { "type": "selector", "tag": "openai", "outbounds": [ "proxy", "us-auto", "sg-auto" ], "default": "proxy" },
+    { "type": "selector", "tag": "youtube", "outbounds": [ "proxy", "hk-auto", "us-auto" ], "default": "proxy" },
+    { "type": "selector", "tag": "bilibili", "outbounds": [ "direct", "proxy" ], "default": "direct" },
+    { "type": "selector", "tag": "cn", "outbounds": [ "direct", "proxy" ], "default": "direct" },
+    { "type": "selector", "tag": "GLOBAL", "outbounds": [ "direct", "proxy" ], "default": "direct" },
+    { "type": "direct", "tag": "direct" },
+    { "type": "urltest", "tag": "hk-auto", "outbounds": [ "hk_node_1" ], "url": "https://www.youtube.com/generate_204" },
+    { "type": "urltest", "tag": "tw-auto", "outbounds": [ "tw_node_1" ], "url": "https://www.youtube.com/generate_204" },
+    { "type": "urltest", "tag": "jp-auto", "outbounds": [ "jp_node_1" ], "url": "https://www.youtube.com/generate_204" },
+    { "type": "urltest", "tag": "sg-auto", "outbounds": [ "sg_node_1" ], "url": "https://www.youtube.com/generate_204" },
+    { "type": "urltest", "tag": "us-auto", "outbounds": [ "us_node_1" ], "url": "https://www.youtube.com/generate_204" },
+    { "tag": "hk_node_1", "type": "selector", "outbounds": [] },
+    { "tag": "tw_node_1", "type": "selector", "outbounds": [] },
+    { "tag": "jp_node_1", "type": "selector", "outbounds": [] },
+    { "tag": "sg_node_1", "type": "selector", "outbounds": [] },
+    { "tag": "us_node_1", "type": "selector", "outbounds": [] }
   ],
   "route": {
+    "default_domain_resolver": "ali",
     "rules": [
       { "action": "sniff", "sniffer": [ "http", "tls", "quic", "dns" ], "timeout": "500ms" },
       { "type": "logical", "mode": "or", "rules": [ { "port": 53 }, { "protocol": "dns" } ], "action": "hijack-dns" },
-      { "ip_is_private": true, "outbound": "DIRECT" },
-      { "clash_mode": "Global", "outbound": "GLOBAL" },
-      { "clash_mode": "Direct", "outbound": "DIRECT" },
-      { "rule_set": "openai_domain", "outbound": "AI" },
-      { "rule_set": "claude_domain", "outbound": "AI" },
-      { "rule_set": "youtube_domain", "outbound": "Youtube" },
-      { "rule_set": "tiktok_domain", "outbound": "TikTok" },
-      { "rule_set": "cn_domain", "outbound": "DIRECT" },
-      { "rule_set": "proxy_domain", "outbound": "PROXY" }
+      { "ip_is_private": true, "action": "route", "outbound": "direct" },
+      { "clash_mode": "Global", "action": "route", "outbound": "GLOBAL" },
+      { "clash_mode": "Direct", "action": "route", "outbound": "direct" },
+      { "rule_set": "openai_domain", "action": "route", "outbound": "openai" },
+      { "rule_set": "youtube_domain", "action": "route", "outbound": "youtube" },
+      { "rule_set": "bilibili_domain", "action": "route", "outbound": "bilibili" },
+      { "rule_set": "cn_domain", "action": "route", "outbound": "cn" },
+      { "rule_set": "proxy_domain", "action": "route", "outbound": "proxy" },
+      { "action": "resolve" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": "cn_domain", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/cn.srs" },
-      { "type": "remote", "tag": "proxy_domain", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.srs" },
-      { "type": "remote", "tag": "openai_domain", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/openai.srs" },
-      { "type": "remote", "tag": "youtube_domain", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/youtube.srs" },
-      { "type": "remote", "tag": "tiktok_domain", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/TikTok/TikTok.srs" },
-      { "type": "remote", "tag": "private_domain", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs" }
+      { "tag": "cn_domain", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/cn.srs", "download_detour": "direct" },
+      { "tag": "proxy_domain", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs", "download_detour": "direct" },
+      { "tag": "openai_domain", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/openai.srs", "download_detour": "direct" },
+      { "tag": "youtube_domain", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geosite/youtube.srs", "download_detour": "direct" },
+      { "tag": "bilibili_domain", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geosite/bilibili.srs", "download_detour": "direct" },
+      { "tag": "private_domain", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "direct" }
     ],
-    "auto_detect_interface": true,
-    "final": "PROXY"
+    "final": "proxy",
+    "auto_detect_interface": true
   },
   "experimental": {
-    "cache_file": { "enabled": true, "store_fakeip": true },
-    "clash_api": { "external_controller": "0.0.0.0:9090", "external_ui": "ui" }
+    "clash_api": {
+      "external_controller": "0.0.0.0:9090",
+      "external_ui": "ui"
+    },
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true
+    }
   }
 }
