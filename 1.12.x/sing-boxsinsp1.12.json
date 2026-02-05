@@ -1,6 +1,6 @@
 {
   "log": {
-    "level": "error",
+    "level": "info",
     "timestamp": true
   },
   "dns": {
@@ -89,7 +89,7 @@
     {
       "type": "mixed",
       "tag": "mixed-in",
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "listen_port": 7890,
       "tcp_fast_open": true,
       "udp_fragment": false
@@ -106,7 +106,7 @@
       "platform": {
         "http_proxy": {
           "enabled": true,
-          "server": "127.0.0.1",
+          "server": "0.0.0.0",
           "server_port": 7890
         }
       }
