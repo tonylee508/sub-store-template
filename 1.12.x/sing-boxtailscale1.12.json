@@ -8,7 +8,7 @@
       "type": "tailscale",
       "tag": "ts-ep",
       "state_directory": "/var/lib/sing-box/tailscale",
-      "auth_key": "tskey-auth-kQMFMWkkSa11CNTRL-mgUrspvmhvaxz7YGFzgKvaBdApU8Ggce",
+      "auth_key": "tskey-auth-kHtuV12VB921CNTRL-XJ6gfZD1GXMNS2MU46eBXM91HJtydYLe",
       "hostname": "armbian-sb",
       "accept_routes": true,
       "advertise_routes": [
