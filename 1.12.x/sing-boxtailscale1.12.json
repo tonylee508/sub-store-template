@@ -3,6 +3,20 @@
     "level": "info",
     "timestamp": true
   },
+  "endpoints": [
+    {
+      "type": "tailscale",
+      "tag": "ts-ep",
+      "state_directory": "/var/lib/sing-box/tailscale",
+      "auth_key": "tskey-auth-kQMFMWkkSa11CNTRL-mgUrspvmhvaxz7YGFzgKvaBdApU8Ggce",
+      "hostname": "armbian-sb",
+      "accept_routes": true,
+      "advertise_routes": [
+        "192.168.10.0/24"
+      ],
+      "advertise_exit_node": true
+    }
+  ],
   "dns": {
     "servers": [
       {
@@ -10,6 +24,11 @@
         "tag": "fakeip",
         "inet4_range": "198.18.0.0/15",
         "inet6_range": "fc00::/18"
+      },
+      {
+        "type": "tailscale",
+        "tag": "dns-ts",
+        "endpoint": "ts-ep"
       },
       {
         "type": "h3",
@@ -34,6 +53,12 @@
       }
     ],
     "rules": [
+      {
+        "domain_suffix": [
+          "ts.net"
+        ],
+        "server": "dns-ts"
+      },
       {
         "rule_set": "private_domain",
         "server": "local"
@@ -497,6 +522,14 @@
   ],
   "route": {
     "rules": [
+      {
+        "ip_cidr": [
+          "192.168.10.0/24",
+          "100.64.0.0/10"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
       {
         "action": "sniff",
         "sniffer": [
