@@ -8,7 +8,7 @@
       "type": "tailscale",
       "tag": "ts-ep",
       "auth_key": "tskey-auth-kHtuV12VB921CNTRL-XJ6gfZD1GXMNS2MU46eBXM91HJtydYLe",
-      "hostname": "armbian-sb",
+      "hostname": "android-sb",
       "accept_routes": true,
       "advertise_routes": [
         "192.168.10.0/24"
