@@ -7,7 +7,7 @@
     {
       "type": "tailscale",
       "tag": "ts-ep",
-      "auth_key": "tskey-auth-kHtuV12VB921CNTRL-XJ6gfZD1GXMNS2MU46eBXM91HJtydYLe",
+      "auth_key": "tskey-auth-kQJZb6k2B111CNTRL-A1UXZKmV7UXs3e4TqW2oUXBh4G2NxK8ZJ",
       "hostname": "android-sb",
       "accept_routes": true,
       "advertise_routes": [
