@@ -120,6 +120,12 @@
   ],
   "outbounds": [
     {
+  "type": "selector",
+  "tag": "ALL",
+  "outbounds": [],
+  "default": "AUTO"
+},
+    {
       "type": "selector",
       "tag": "GLOBAL",
       "outbounds": [
@@ -139,6 +145,7 @@
       "type": "selector",
       "tag": "PROXY",
       "outbounds": [
+        "ALL",
         "AUTO",
         "CF优选",
         "HK AUTO",
