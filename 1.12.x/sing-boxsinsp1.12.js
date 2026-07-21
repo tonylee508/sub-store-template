@@ -16,7 +16,7 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  if (['AUTO'].includes(i.tag)) {
+  if (['ALL','AUTO'].includes(i.tag)) {
     safePush(i, getTags(proxies))
   }
 
