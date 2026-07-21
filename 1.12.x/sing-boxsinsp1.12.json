@@ -850,7 +850,7 @@
     "default_domain_resolver": "ali",
     "final": "Final"
   },
-    "services": [
+  "services": [
     {
       "type": "api",
       "listen": "0.0.0.0",
