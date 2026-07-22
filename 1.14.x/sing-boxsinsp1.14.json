@@ -731,7 +731,7 @@
       {
         "type": "remote",
         "tag": "netflix_ip",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/netflix.srs",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/netflix.srs"
       },
       {
         "type": "remote",
@@ -751,7 +751,7 @@
       {
         "type": "remote",
         "tag": "cloudflare_domain",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geosite/cloudflare.srs",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geosite/cloudflare.srs"
       },
       {
         "type": "remote",
