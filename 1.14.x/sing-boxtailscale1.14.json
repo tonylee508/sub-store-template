@@ -888,7 +888,7 @@
       "tag": "gRPC",
       "secret": "",
       "access_control_allow_origin": [],
-      "access_control_allow_private_network": false,
+      "access_control_allow_private_network": true,
       "tls": {}
     }
   ],
