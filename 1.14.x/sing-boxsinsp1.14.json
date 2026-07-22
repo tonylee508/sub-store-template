@@ -120,11 +120,13 @@
   ],
   "outbounds": [
     {
-  "type": "selector",
-  "tag": "ALL",
-  "outbounds": ["AUTO"],
-  "default": "AUTO"
-},
+      "type": "selector",
+      "tag": "ALL",
+      "outbounds": [
+        "AUTO"
+      ],
+      "default": "AUTO"
+    },
     {
       "type": "selector",
       "tag": "GLOBAL",
