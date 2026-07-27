@@ -299,19 +299,10 @@
     {
       "type": "selector",
       "tag": "Youtube",
-      "outbounds": [
-        "ALL",
-        "AUTO",
-        "HK AUTO",
-        "JP AUTO",
-        "US AUTO",
-        "TW AUTO",
-        "SG AUTO",
-        "CF优选",
-        "PROXY",
-        "DIRECT"
-      ],
-      "default": "ALL"
+      "outbounds": null,
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "16m0s",
+      "tolerance": 50
     },
     {
       "type": "urltest",
