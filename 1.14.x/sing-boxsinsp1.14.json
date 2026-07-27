@@ -297,7 +297,7 @@
       "tolerance": 50
     },
     {
-      "type": "urltest",
+      "type": "selector",
       "tag": "Youtube",
       "outbounds": [
         "ALL",
