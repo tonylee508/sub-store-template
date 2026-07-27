@@ -297,7 +297,7 @@
       "tolerance": 50
     },
     {
-      "type": "selector",
+      "type": "urltest",
       "tag": "Youtube",
       "outbounds": null,
       "url": "https://www.gstatic.com/generate_204",
