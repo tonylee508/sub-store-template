@@ -3,6 +3,12 @@
     "level": "info",
     "timestamp": true
   },
+  "http_clients": [
+    {
+      "tag": "dl-client",
+      "detour": "DIRECT"
+    }
+  ],
   "dns": {
     "servers": [
       {
@@ -503,6 +509,7 @@
     }
   ],
   "route": {
+    "default_http_client": "dl-client",
     "rules": [
       {
         "action": "sniff",
