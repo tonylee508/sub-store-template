@@ -519,11 +519,22 @@
     {
       "type": "direct",
       "tag": "DIRECT"
+    },
+    {
+      "type": "tailscale",
+      "tag": "tailscale-out",
+      "endpoint": "ts-ep"
     }
   ],
   "route": {
     "default_http_client": "dl-client",
     "rules": [
+      {
+        "ip_cidr": [
+          "192.168.10.0/24"
+        ],
+        "outbound": "tailscale-out"
+      },
       {
         "action": "sniff",
         "sniffer": [
