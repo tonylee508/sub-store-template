@@ -519,11 +519,6 @@
     {
       "type": "direct",
       "tag": "DIRECT"
-    },
-    {
-      "type": "tailscale",
-      "tag": "tailscale-out",
-      "endpoint": "ts-ep"
     }
   ],
   "route": {
@@ -533,7 +528,7 @@
         "ip_cidr": [
           "192.168.10.0/24"
         ],
-        "outbound": "tailscale-out"
+        "outbound": "ts-ep"
       },
       {
         "action": "sniff",
