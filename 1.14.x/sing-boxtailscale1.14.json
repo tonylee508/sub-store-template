@@ -153,17 +153,7 @@
     {
       "type": "selector",
       "tag": "ALL",
-      "outbounds": [
-        "AUTO",
-        "HK AUTO",
-        "JP AUTO",
-        "TW AUTO",
-        "SG AUTO",
-        "US AUTO",
-        "CF优选",
-        "DIRECT"
-      ],
-      "default": "AUTO"
+      "outbounds": []
     },
     {
       "type": "selector",
