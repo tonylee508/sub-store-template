@@ -13,7 +13,7 @@
     {
       "type": "tailscale",
       "tag": "ts-ep",
-      "auth_key": "tskey-auth-kQJZb6k2B111CNTRL-A1UXZKmV7UXs3e4TqW2oUXBh4G2NxK8ZJ",
+      "auth_key": "tskey-auth-k52WxAUSFT11CNTRL-NeVpxSStTnKMwVJpp8BhnKngQHG6pQXsJ",
       "hostname": "android-sb",
       "accept_routes": true,
       "advertise_routes": [
