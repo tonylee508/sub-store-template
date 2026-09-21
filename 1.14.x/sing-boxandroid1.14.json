@@ -6,7 +6,7 @@
   "http_clients": [
     {
       "tag": "dl-client",
-      "detour": "direct"
+      "detour": "PROXY"
     }
   ],
     "endpoints": [
