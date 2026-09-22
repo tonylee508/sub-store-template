@@ -3,6 +3,12 @@
     "level": "info",
     "timestamp": true
   },
+  "http_clients": [
+    {
+      "tag": "dl-client",
+      "detour": "DIRECT"
+    }
+  ],
     "endpoints": [
     {
       "type": "tailscale",
@@ -516,6 +522,7 @@
     }
   ],
   "route": {
+    "default_http_client": "dl-client",
     "rules": [
       {
         "ip_cidr": [
