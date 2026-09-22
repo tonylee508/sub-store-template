@@ -516,7 +516,6 @@
     }
   ],
   "route": {
-    "default_http_client": "dl-client",
     "rules": [
       {
         "ip_cidr": [
