@@ -54,6 +54,12 @@
     ],
     "rules": [
       {
+        "domain": [
+          "scp-store.lightingdesignh.dpdns.org"
+        ],
+        "server": "local"
+      },
+      {
         "rule_set": "private_domain",
         "server": "local"
       },
