@@ -524,7 +524,8 @@
     },
     {
       "type": "direct",
-      "tag": "DIRECT"
+      "tag": "DIRECT",
+      "domain_resolver": "ali"
     }
   ],
   "route": {
