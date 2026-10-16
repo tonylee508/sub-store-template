@@ -853,7 +853,7 @@
         "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/youtube.srs"
       }
     ],
-    "default_http_client": "DIRECT",
+    "default_http_client": "dl-client",
     "auto_detect_interface": true,
     "default_domain_resolver": "ali",
     "final": "Final"
