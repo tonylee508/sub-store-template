@@ -94,7 +94,7 @@
       {
         "rule_set": [
           "apple_domain",
-          "cn_domain",
+          "cn_domain"
         ],
         "server": "ali"
       },
