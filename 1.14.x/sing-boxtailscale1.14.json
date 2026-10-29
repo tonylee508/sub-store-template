@@ -157,7 +157,9 @@
     {
       "type": "selector",
       "tag": "ALL",
-      "outbounds": ["AUTO"],
+      "outbounds": [
+        "AUTO"
+      ],
       "default": "AUTO"
     },
     {
@@ -890,9 +892,9 @@
       "access_control_allow_origin": [],
       "access_control_allow_private_network": true,
       "dashboard": {
-      "enabled": true,
-      "path": "/etc/sing-box/dashboard"
-    },
+        "enabled": true,
+        "path": "/etc/sing-box/dashboard"
+      },
       "tls": {}
     }
   ],
