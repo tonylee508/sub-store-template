@@ -94,15 +94,10 @@
       {
         "rule_set": [
           "apple_domain",
-          "cn_domain"
-        ],
-        "server": "ali"
-      },
-      {
-        "rule_set": [
+          "cn_domain",
           "bilibili_domain"
         ],
-        "action": "reject"
+        "server": "ali"
       },
       {
         "rule_set": [
@@ -159,10 +154,6 @@
       "tag": "ALL",
       "outbounds": ["AUTO"],
       "default": "AUTO"
-    },
-    {
-      "type": "block",
-      "tag": "block"
     },
     {
       "type": "selector",
@@ -602,7 +593,7 @@
       },
       {
         "rule_set": "bilibili_domain",
-        "outbound": "block"
+        "outbound": "bilibili"
       },
       {
         "rule_set": "youtube_domain",
