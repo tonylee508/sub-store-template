@@ -94,15 +94,10 @@
       {
         "rule_set": [
           "apple_domain",
-          "cn_domain"
-        ],
-        "server": "ali"
-      },
-      {
-        "rule_set": [
+          "cn_domain",
           "bilibili_domain"
         ],
-        "action": "reject"
+        "server": "ali"
       },
       {
         "rule_set": [
@@ -157,14 +152,8 @@
     {
       "type": "selector",
       "tag": "ALL",
-      "outbounds": [
-        "AUTO"
-      ],
+      "outbounds": ["AUTO"],
       "default": "AUTO"
-    },
-    {
-      "type": "block",
-      "tag": "block"
     },
     {
       "type": "selector",
@@ -604,7 +593,7 @@
       },
       {
         "rule_set": "bilibili_domain",
-        "outbound": "block"
+        "outbound": "bilibili"
       },
       {
         "rule_set": "youtube_domain",
@@ -892,9 +881,9 @@
       "access_control_allow_origin": [],
       "access_control_allow_private_network": true,
       "dashboard": {
-        "enabled": true,
-        "path": "/etc/sing-box/dashboard"
-      },
+      "enabled": true,
+      "path": "/etc/sing-box/dashboard"
+    },
       "tls": {}
     }
   ],
