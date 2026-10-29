@@ -162,7 +162,7 @@
     },
     {
       "type": "block",
-      "tag": "block",
+      "tag": "block"
     },
     {
       "type": "selector",
